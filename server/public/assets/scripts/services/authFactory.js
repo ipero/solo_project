@@ -47,8 +47,10 @@ tbsApp.factory("ViewStuff", ["$http", "$location", "$rootScope",
     var $this = this;
     var data = {};
 
-    var viewStuff = function(id){
-        $http.get('/private/view/' + id)
+    // var viewStuff = function(id){
+    //     $http.get('/private/view/' + id)
+    var viewStuff = function(){
+        $http.get('/private/view/')
         .then(function (response) {
           console.log("Made to server");
           if (response.data.err) {
@@ -57,7 +59,11 @@ tbsApp.factory("ViewStuff", ["$http", "$location", "$rootScope",
           } else {
 
             data.response= response.data[0].stuff;
-            console.log("Factory ViewStuff ", data);
+            for(var i = 0; i<data.response.length; i++){
+              data.response[i].dateBorrowed = new Date(data.response[i].dateBorrowed);
+              data.response[i].returnDueDate = new Date(data.response[i].returnDueDate);
+            }
+            console.log("Factory ViewStuff ", response.data[0].stuff);
           }
         });
 
@@ -67,12 +73,16 @@ tbsApp.factory("ViewStuff", ["$http", "$location", "$rootScope",
     var deleteItem = function(itemId){
           console.log(itemId +", "+ $rootScope.userEmail);
           $http.delete("/private/view/delete/" + itemId).then(function(response){
-          //viewStuff(); uncomment when I can send data to server
+          viewStuff();
           });
     };
 
     var updateItem = function(data){
-      console.log("Update item ", data);
+      console.log("Update item ", {"_id":data});
+      $http.post("/private/view", {"_id":data}).then(function(response){
+          console.log("Stuff Updated! ", response);
+
+      });
     };
 
     return {

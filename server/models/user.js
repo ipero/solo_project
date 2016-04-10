@@ -11,7 +11,7 @@ var userStuff = mongoose.Schema({
   itemName: String,
   itemDesc: String,
   dateBorrowed: String,
-  returnDueDate: Date
+  returnDueDate: String
 });
 
 var userSchema = mongoose.Schema({
