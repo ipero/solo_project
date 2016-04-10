@@ -1,0 +1,78 @@
+<h2>View all stuff borrowed from you</h2>
+
+<div ng-repeat="item in viewStuff.data.response">
+  <h3> {{ item.borrowersName }}</h3>
+  <p> {{item.borrowersEmail}}</p>
+  <p> {{item.itemName}}</p>
+  <p>{{item.itemDesc}}</p>
+  <p>{{item.dateBorrowed }}</p>
+  <p>{{item.returnDueDate}}</p>
+  <button ng-click="updateItem(item._id)">Edit</button>
+  <button ng-click="deleteItem(item._id)">Delete</button>
+</div>
+
+<div ng-repeat="item in viewStuff.data.response">
+  <form editable-form name="editableForm" onaftersave="saveUser()">
+      <div>
+        <!-- editable username -->
+        <span class="title">Borrower's name: </span>
+        <span editable-text="item.borrowersName" e-name="name" onbeforesave="checkName($data)" e-required>{{ item.borrowersName }}</span>
+      </div>
+
+      <div>
+        <!-- editable borrowersName-->
+        <span class="title">Borrower's Email: </span>
+        <span editable-text="item.borrowersEmail" e-name="email" e-required >
+          {{ item.borrowersEmail }}
+        </span>
+      </div>
+
+      <div>
+        <!-- editable itemName-->
+        <span class="title">Name: </span>
+        <span editable-text="item.itemName" e-name="item" e-required >
+          {{ item.itemName }}
+        </span>
+      </div>
+
+      <div>
+        <!-- editable itemDesc-->
+        <span class="title">Notes: </span>
+        <span editable-text="item.itemDesc" e-name="notes" e-required >
+          {{ item.itemDesc }}
+        </span>
+      </div>
+
+      <div>
+        <!-- editable dateBorrowed -->
+        <span class="title">Date borrowed: </span>
+        <span type="date" editable-date="item.dateBorrowed" e-name="dateBorrowed" e-required>
+          {{ item.dateBorrowed }}
+        </span>
+      </div>
+
+      <div>
+        <!-- editable dateBorrowed -->
+        <span class="title">Return Due Date: </span>
+        <span editable-date="item.returnDueDate" e-name="returnDate" e-required>
+          {{ item.dateBorrowed }}
+        </span>
+      </div>
+
+      <div class="buttons">
+        <!-- button to show form -->
+        <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+          Edit
+        </button>
+        <!-- buttons to submit / cancel form -->
+        <span ng-show="editableForm.$visible">
+          <button type="submit" class="btn btn-primary" ng-click="updateItem(item._id)" ng-disabled="editableForm.$waiting">
+            Save
+          </button>
+          <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+            Cancel
+          </button>
+        </span>
+      </div>
+    </form>
+</div>

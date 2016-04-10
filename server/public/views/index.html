@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Google Server-Side Auth Example</title>
+    <script src="/public/assets/vendors/moment.min.js"></script>
+    <script src="/public/assets/vendors/angular.min.js"></script>
+    <script src="/public/assets/vendors/angular-route.min.js"></script>
+    <script src="/public/assets/vendors/xeditable.js"></script>
+    <script src="/public/assets/scripts/app.js"></script>
+    <script src="/public/assets/scripts/services/authFactory.js"></script>
+    <script src="/public/assets/scripts/controllers/navController.js"></script>
+    <script src="/public/assets/scripts/controllers/authController.js"></script>
+    <script src="/public/assets/scripts/controllers/addController.js"></script>
+    <script src="/public/assets/scripts/controllers/ViewController.js"></script>
+    <link rel="stylesheet" type="text/css" href="../public/assets/vendors/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../public/assets/vendors/skeleton.css" />
+    <link rel="stylesheet" type="text/css" href="/public/assets/vendors/xeditable.css" />
+
+  </head>
+  <body>
+    <!-- Bring in the Angular app -->
+    <main class="container" ng-app="tbsApp">
+      <!-- NavController is on every page -->
+      <header ng-controller="NavController as nav">
+        <h1>Track my borrowed stuff</h1>
+        <nav>
+          <ul class="row">
+            <li class="two columns"><a href="#home">Home</a></li>
+            <li class="two columns" ng-show="nav.displayLogout"><a href="#add">Add Item</a></li>
+            <li class="two columns" ng-show="nav.displayLogout"><a href="#view">View Items</a></li>
+            <li class="six columns" ng-show="nav.displayLogout">Hi {{nav.username}}! | <a href="#" ng-click="nav.logout()">Logout</a></li>
+          </ul>
+        </nav>
+        <!-- Show a helpful message when needed -->
+        <section id="message" class="nav.message.type" ng-show="nav.message.text">
+          {{nav.message.text}}
+        </section>
+      </header>
+      <!-- Pull in views via ngRoutes here -->
+      <ng-view></ng-view>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<h2>Add Item</h2>
+<section>
+  <p>
+    {{addStuff.data}}
+  </p>
+</section>
+
+<form ng-submit="addItem(item)">
+  <input ng-model="item.borrowersName" type="text" placeholder="Who borrowed your belonging?" />
+  <input ng-model="item.borrowersEmail" type="text" placeholder="Borror's email" />
+  <input ng-model="item.itemName" type="text" placeholder="What was borrowed?" />
+  <input ng-model="item.itemDesc" type="text" placeholder="Any notes?" />
+  <input ng-model="item.dateBorrowed" type="date" placeholder="When it was borrowed?" />
+  <input ng-model="item.returnDueDate" type="date" placeholder="When this should be returned?" />
+
+  <input type="submit" value="Save Item" />
+</form>
