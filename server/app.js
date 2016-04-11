@@ -41,6 +41,29 @@ app.use('/auth', auth);
 app.use('/private', isLoggedIn, private);
 app.use('/', index);
 
+//----START TESTING NODEMAILER-----
+var nodemailer = require('nodemailer');
+
+// create reusable transporter object using the default SMTP transport
+var transporter = nodemailer.createTransport('smtps://raccoonzeeapp%40gmail.com:12345Abc@smtp.gmail.com');
+
+// setup e-mail data with unicode symbols
+var mailOptions = {
+    from: '"Raccoonzee App 👥" <raccoonzeeapp@gmail.com>', // sender address
+    to: 'myefeather@gmail.com', // list of receivers
+    subject: 'Hello ✔', // Subject line
+    text: 'Hello world!!', // plaintext body
+    html: '<b>Hello world 🐴</b>' // html body
+};
+
+// send mail with defined transport object
+transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+});
+//---- END of NODEMAILER
 
 app.listen(app.get("port"), function () {
   console.log('Listening on port: ', app.get("port"));
