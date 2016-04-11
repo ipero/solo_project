@@ -78,8 +78,10 @@ tbsApp.factory("ViewStuff", ["$http", "$location", "$rootScope",
     };
 
     var updateItem = function(data){
-      console.log("Update item ", {"_id":data});
-      $http.post("/private/view", {"_id":data}).then(function(response){
+      console.log(data);
+      // console.log("borrower's Name ", data.borrowersName);
+      // console.log("borrower's Name ", $scope.editableForm);
+      $http.post("/private/view", data).then(function(response){
           console.log("Stuff Updated! ", response);
 
       });

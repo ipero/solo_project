@@ -4,12 +4,20 @@ tbsApp.controller('ViewController', ["$http", "$location", "$rootScope", "ViewSt
 
   var $this = this;
   $this.data = '';
+  //$scope.updateData = {};
 
 
   ViewStuff.viewStuff($rootScope.userEmail);
   $this.data = ViewStuff.data;
   $scope.deleteItem = ViewStuff.deleteItem;
+
+
   $scope.updateItem = ViewStuff.updateItem;
+  // $scope.updateItem = function(updateItemData){
+  //   $scope.updateData = updateItemData;
+  //   console.log($scope.updateData.borrowersName);
+  // }
+
   // $http.get('/private/view/' + $rootScope.userEmail)
   //   .then(function (response) {
   //     console.log("Made to server");

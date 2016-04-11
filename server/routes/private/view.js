@@ -40,38 +40,31 @@ router.delete("/delete/:id", function(req, res){
 //Update data for particular item
 router.post('/', function(req, res){
 
-  var item = req.body._id;
-  console.log(item._id);
-  console.log("Request data------ ", req.user._id);
-  res.status(200).send();
+  var item = req.body;
+  console.log(item);
 
+  //res.status(200).send();
+  User.user.findOneAndUpdate(
+    { "_id": req.user._id, "stuff._id": item._id },
+    {
+        "$set": {
+            "stuff.$.borrowersName": item.borrowersName,
+            "stuff.$.borrowersEmail": item.borrowersEmail,
+            "stuff.$.itemName": item.itemName,
+            "stuff.$.itemDesc": item.itemDesc,
+            "stuff.$.dateBorrowed": item.dateBorrowed,
+            "stuff.$.returnDueDate": item.returnDueDate
+        }
+    },
+    function(err,doc) {
+      if(err){
+          console.log(err);
+      } else {
+          res.status(200).send();
+      }
+    }
+  );
 
-  // User.user.findOne({googleEmail:req.body.email}, function(err, user){
-  //   if(err){
-  //       console.log(err);
-  //     }else {
-  //       console.log(user);
-  //       User.userStuff.create({
-  //           borrowersName: req.body.borrowersName,
-  //           borrowersEmail: req.body.borrowersEmail,
-  //           itemName: req.body.itemName,
-  //           itemDesc: req.body.itemDesc,
-  //           dateBorrowed: req.body.dateBorrowed,
-  //           returnDueDate: req.body.returnDueDate
-  //         },
-  //         function(err, createdItem){
-  //           user.stuff.push(createdItem);
-  //           user.save(function(err){
-  //           if(err){
-  //             console.log(err);
-  //           } else {
-  //             res.status(200).send();
-  //           }
-  //         })
-  //
-  //       })
-  //     }
-  // });
 });
 
 module.exports = router;
