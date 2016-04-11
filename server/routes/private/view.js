@@ -20,11 +20,10 @@ router.get("/", function(req, res){
 router.delete("/delete/:id", function(req, res){
   var userId = req.session.passport.user;
   var deleteItemId = req.params.id;
-  console.log("Delete item _id", req.params.id + "user _id" + userId);
 
   User.user.update(
-    { "_id": req.session.passport.user },
-    { "$pull": { "stuff": { "_id": req.params.id } } },
+    { "_id": userId },
+    { "$pull": { "stuff": { "_id": deleteItemId } } },
     function(err, numAffected) {
         if(err){
             console.log(err);
@@ -39,11 +38,8 @@ router.delete("/delete/:id", function(req, res){
 
 //Update data for particular item
 router.post('/', function(req, res){
-
   var item = req.body;
-  console.log(item);
 
-  //res.status(200).send();
   User.user.findOneAndUpdate(
     { "_id": req.user._id, "stuff._id": item._id },
     {
