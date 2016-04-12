@@ -10,7 +10,27 @@ var auth = require('./routes/auth.js');
 var isLoggedIn = require('./utils/auth.js');
 var private = require('./routes/private/index.js');
 var database = require('./utils/database.js');
-var mailer = require('./services/mailer.js'); //--- check this
+var mailer = require('./services/mailer.js'); //--- TO DO: call mailer on schedule
+//var schedule = require('node-schedule');
+
+var cron = require('node-schedule');
+// run the job at 18:55:30 on Dec. 14 2018
+//var today = new Date().now();
+//console.log(today);
+// var date = new Date(2016, 03, 12, 14, 38, 30);
+// cron.scheduleJob(date, function(){
+//     console.log(new Date(), "Somthing important is going to happen today!");
+// });
+var rule = new cron.RecurrenceRule();
+rule.second = 30;
+cron.scheduleJob(rule, function(){
+    console.log(new Date(), 'The 30th second of the minute.');
+});
+
+
+// var j = schedule.scheduleJob('42 * * * *', function(){
+//   console.log('The answer to life, the universe, and everything!');
+// });
 
 // Express App Config
 var app = express();
@@ -42,35 +62,6 @@ app.use(passport.session());
 app.use('/auth', auth);
 app.use('/private', isLoggedIn, private);
 app.use('/', index);
-
-
-//----START TESTING NODEMAILER-----
-// mailer.sendPwdReminder({
-//     to: 'myefeather@gmail.com'
-// }, {
-//     username: 'Raccoonzee',
-//     password: 'erwerwerfdsf3234q2123432423'
-// }, function(err, info){
-//     if(err){
-//        console.log('Error');
-//     }else{
-//         console.log('Password reminder sent');
-//     }
-// });
-// //get data for mailer
-// var User = require("./models/user.js");
-//
-// var mailOptions = {
-//     from: '"Raccoonzee App" <raccoonzeeapp@gmail.com>', // sender address
-//     to: 'myefeather@gmail.com', // list of receivers
-//     subject: 'Hello object 3', // Subject line
-//     text: 'Hello world!!', // plaintext body
-//     html: '<p>Hello world</p><br /> <p>Please return this item' // html body
-// };
-//mailer.sendMail(mailOptions);
-
-// --- End NODEMAILER -----
-
 
 app.listen(app.get("port"), function () {
   console.log('Listening on port: ', app.get("port"));

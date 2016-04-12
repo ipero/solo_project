@@ -2,3 +2,4 @@ node_modules/
 .DS_STORE/
 npm-debut.log
 config/auth.js
+config/gmailpassport.js
