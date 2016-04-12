@@ -42,8 +42,8 @@ tbsApp.factory("AddStuff", ["$http", function($http){
     };
 }]);
 
-tbsApp.factory("ViewStuff", ["$http", "$location", "$rootScope",
-  function($http, $location, $rootScope){
+tbsApp.factory("ViewStuff", ["$http", "$location", "$rootScope", "$filter",
+  function($http, $location, $rootScope, $filter){
     var $this = this;
     var data = {};
 
@@ -62,6 +62,7 @@ tbsApp.factory("ViewStuff", ["$http", "$location", "$rootScope",
             for(var i = 0; i<data.response.length; i++){
               data.response[i].dateBorrowed = new Date(data.response[i].dateBorrowed);
               data.response[i].returnDueDate = new Date(data.response[i].returnDueDate);
+              //console.log(data.response[i].dateBorrowed);
             }
             console.log("Factory ViewStuff ", response.data[0].stuff);
           }
@@ -78,10 +79,23 @@ tbsApp.factory("ViewStuff", ["$http", "$location", "$rootScope",
     };
 
     var updateItem = function(data){
+      // var formatedData = {};
+      // var formatedData = data;
+      // formatedData.dateBorrowed = $filter('date')(data.dateBorrowed, 'yyyy-MM-dd');
+      // formatedData.returnDueDate = $filter('date')(data.returnDueDate, 'yyyy-MM-dd');
+      // data.dateBorrowed = new Date(data.dateBorrowed).toLocaleDateString('en-GB',
+      //   {
+      //       year : 'numeric',
+      //       month : 'numeric',
+      //       day : 'numeric'
+      //   }).split(' ').join('-');
 
+      //data.dateBorrowed = new Date(data.dateBorrowed).to('dd.MM.yy');
+      // formatedData.dateBorrowed = new Date(formatedData.dateBorrowed).toISOString().slice(0,10);
+      //console.log(typeof formatedData.dateBorrowed);
       $http.post("/private/view", data).then(function(response){
           console.log("Stuff Updated! ", response);
-          viewStuff();
+          //viewStuff();
       });
     };
 

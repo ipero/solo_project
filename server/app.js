@@ -10,6 +10,8 @@ var auth = require('./routes/auth.js');
 var isLoggedIn = require('./utils/auth.js');
 var private = require('./routes/private/index.js');
 var database = require('./utils/database.js');
+var mailer = require('./services/mailer.js'); //--- check this
+
 // Express App Config
 var app = express();
 app.use('/public', express.static(__dirname + '/public'));  // serve files from public
@@ -41,29 +43,34 @@ app.use('/auth', auth);
 app.use('/private', isLoggedIn, private);
 app.use('/', index);
 
+
 //----START TESTING NODEMAILER-----
-var nodemailer = require('nodemailer');
+// mailer.sendPwdReminder({
+//     to: 'myefeather@gmail.com'
+// }, {
+//     username: 'Raccoonzee',
+//     password: 'erwerwerfdsf3234q2123432423'
+// }, function(err, info){
+//     if(err){
+//        console.log('Error');
+//     }else{
+//         console.log('Password reminder sent');
+//     }
+// });
+// //get data for mailer
+// var User = require("./models/user.js");
+//
+// var mailOptions = {
+//     from: '"Raccoonzee App" <raccoonzeeapp@gmail.com>', // sender address
+//     to: 'myefeather@gmail.com', // list of receivers
+//     subject: 'Hello object 3', // Subject line
+//     text: 'Hello world!!', // plaintext body
+//     html: '<p>Hello world</p><br /> <p>Please return this item' // html body
+// };
+//mailer.sendMail(mailOptions);
 
-// create reusable transporter object using the default SMTP transport
-var transporter = nodemailer.createTransport('smtps://raccoonzeeapp%40gmail.com:12345Abc@smtp.gmail.com');
+// --- End NODEMAILER -----
 
-// setup e-mail data with unicode symbols
-var mailOptions = {
-    from: '"Raccoonzee App 👥" <raccoonzeeapp@gmail.com>', // sender address
-    to: 'myefeather@gmail.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world!!', // plaintext body
-    html: '<b>Hello world 🐴</b>' // html body
-};
-
-// send mail with defined transport object
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        return console.log(error);
-    }
-    console.log('Message sent: ' + info.response);
-});
-//---- END of NODEMAILER
 
 app.listen(app.get("port"), function () {
   console.log('Listening on port: ', app.get("port"));

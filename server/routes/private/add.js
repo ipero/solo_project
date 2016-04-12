@@ -15,7 +15,7 @@ router.post('/', function(req, res){
     if(err){
         console.log(err);
       }else {
-        console.log(user);
+        //console.log(user);
         User.userStuff.create({
             borrowersName: req.body.borrowersName,
             borrowersEmail: req.body.borrowersEmail,

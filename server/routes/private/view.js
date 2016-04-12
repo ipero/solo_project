@@ -39,6 +39,7 @@ router.delete("/delete/:id", function(req, res){
 //Update data for particular item
 router.post('/', function(req, res){
   var item = req.body;
+  console.log(item.dateBorrowed);
 
   User.user.findOneAndUpdate(
     { "_id": req.user._id, "stuff._id": item._id },

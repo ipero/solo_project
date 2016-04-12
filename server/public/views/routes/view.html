@@ -1,7 +1,7 @@
 <h2>View all stuff borrowed from you</h2>
 
 <div ng-repeat="item in viewStuff.data.response">
-  <form editable-form name="editableForm" onaftersave="updateItem(item)">
+  <form editable-form name="editableForm" onbeforesave="updateItem(item)">
       <div>
         <!-- editable username -->
         <span class="title">Borrower's name: </span>

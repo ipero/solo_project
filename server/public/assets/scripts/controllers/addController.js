@@ -19,9 +19,9 @@ tbsApp.controller('AddController', ['$http', '$scope', 'AddStuff', '$location', 
 
         $scope.addItem = function(data){
 
-            data.dateBorrowed = $filter('date')(data.dateBorrowed, 'yyyy-MM-dd');
-            data.returnDueDate = $filter('date')(data.returnDueDate, 'yyyy-MM-dd');
-
+            // data.dateBorrowed = $filter('date')(data.dateBorrowed, 'yyyy-MM-dd');
+            // data.returnDueDate = $filter('date')(data.returnDueDate, 'yyyy-MM-dd');
+            //console.log("Date borrowed: ", data.dateBorrowed, " Return Date: ", data.returnDueDate);
             // $scope.$watch("data.dateBorrowed", function(date){
             //   data.dateBorrowed = $filter('date')(date, 'yyyy-MM-dd');
             // });
