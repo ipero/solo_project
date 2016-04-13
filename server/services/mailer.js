@@ -21,7 +21,6 @@ var sendPwdReminder = transporter.templateSender({
 }, {
     from: 'raccoonzeeapp@gmail.com',
 });
-console.log(pw.password);
 //find overdue stuff
 User.user.find({}, function(err, data){
     var todayDate = new Date();
@@ -45,20 +44,21 @@ User.user.find({}, function(err, data){
           if( (returnDueDateConverted.getTime()+86400000) < todayDate.getTime() ){
             borrowersemail = "";
             borrowersemail = data[i].stuff[j].borrowersEmail;
+            console.log('We are going to send reminder to ', borrowersemail )
             numItemsNotReturned++;
-            console.log("This " + data[i].stuff[j].itemName + " is over due: ", returnDueDateConverted );
+            console.log("The " + data[i].stuff[j].itemName + " is over due: ", returnDueDateConverted );
             //use template based sender to send a message
             sendPwdReminder({
-                to: data[i].stuff[j].borrowersEmail
+                to: borrowersemail
             }, {
                 borrowersname: data[i].stuff[j].borrowersName,
                 itemname: data[i].stuff[j].itemName,
                 loanername: loanerName
-            }, function(err, info){
+            }, function(err, info, borrowersemail){
                 if(err){
                    console.log('Error ', err);
                 }else{
-                    console.log('Reminder sent to ', borrowersemail ); //TO DO: work on it later ( why it is always same emeail?)
+                    console.log('Reminder sent successfully.'); //TO DO: work on it later ( why it is always same emeail?)
                 }
             });
           }
