@@ -1,6 +1,5 @@
 var nodemailer = require('nodemailer');
-var pw = require("../config/gmailpassport.js");
-var User = require("../models/user.js");
+var SENDER = require("../config/gmailpassport.js");
 
 // create reusable transporter object using the default SMTP transport
 var transporter = nodemailer.createTransport( {
@@ -8,58 +7,36 @@ var transporter = nodemailer.createTransport( {
     secureConnection: true, // use SSL
     port: 465, // port for secure SMTP
     auth: {
-        user: "raccoonzeeapp@gmail.com",
-        pass: pw.password // get password from external file
+        user: SENDER.email, // get email and password from external file
+        pass: SENDER.password
     }
 });
 
 // create template based sender function
-var sendPwdReminder = transporter.templateSender({
+var sendReminder = transporter.templateSender({
     subject: 'You forgot to return {{itemname}}!',
     text: 'Hello {{borrowersname}}, please return: {{ itemname }}',
     html: '<b>Hello <strong>{{borrowersname}}</strong>, please return\n<b>{{ itemname }}</b> to {{loanername}}.</p>'
 }, {
-    from: 'raccoonzeeapp@gmail.com',
+    from: '"Raccoonzee App" <' + SENDER.email + '>',
 });
-//find overdue stuff
-User.user.find({}, function(err, data){
-    var todayDate = new Date();
-    var numItemsNotReturned = 0;
-    if(err){
-      console.log(err);
-    }else{
-      //go through whole database
-      for( var i = 0; i<data.length; i++){
-        var loanerName = data[i].googleName;
-        //for each user search through stuff
-        for(var j=0; j<data[i].stuff.length; j++){
 
-          var returnDueDateConverted = new Date(data[i].stuff[j].returnDueDate);
-
-          //check if something is over due by one day.
-          //getTime converts date to milliseconds (one day is 86,400,400 milliseconds)
-          if( (returnDueDateConverted.getTime()+86400000) < todayDate.getTime() ){
-            console.log('We are going to send reminder to ', borrowersemail )
-            numItemsNotReturned++;
-            console.log("The " + data[i].stuff[j].itemName + " is over due: ", returnDueDateConverted );
-            //use template based sender to send a message
-            sendPwdReminder({
-                to: data[i].stuff[j].borrowersEmail
-            }, {
-                borrowersname: data[i].stuff[j].borrowersName,
-                itemname: data[i].stuff[j].itemName,
-                loanername: loanerName
-            }, function(err, info){
-                if(err){
-                   console.log('Error ', err);
-                }else{
-                    console.log('Reminder sent successfully.'); //TO DO: work on it later ( why it is always same emeail?)
-                }
-            });
-          }
-        }
+//this function is exported and called to call sendReminder
+var caller = function(mail){
+  console.log("mailer");
+  sendReminder({
+      to: mail.to
+  }, {
+      borrowersname: mail.borrowersName,
+      itemname: mail.itemName,
+      loanername: mail.loanerName
+  }, function(err, info){
+      if(err){
+         console.log('Error ', err);
+      }else{
+          console.log('Reminder sent successfully.');
       }
-    }
-});
+  });
+};
 
-module.exports = transporter;
+module.exports = caller;
