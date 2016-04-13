@@ -10,7 +10,7 @@ var auth = require('./routes/auth.js');
 var isLoggedIn = require('./utils/auth.js');
 var private = require('./routes/private/index.js');
 var database = require('./utils/database.js');
-var mailer = require('./services/mailer.js'); //--- TO DO: call mailer on schedule
+//var mailer = require('./services/mailer.js'); //--- TO DO: call mailer on schedule
 //var schedule = require('node-schedule');
 
 var cron = require('node-schedule');
