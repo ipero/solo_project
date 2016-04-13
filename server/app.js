@@ -24,7 +24,7 @@ schedule.scheduleJob(rule, function(){
 });
 
 // var demoRule = new schedule.RecurrenceRule();
-// demoRule.second = 30;
+// demoRule.second = 45;
 // schedule.scheduleJob(demoRule, function(){
 //     console.log(new Date(), 'The 30th second of the minute. Calling findDeadbeat');
 //     deadbeatFinder();

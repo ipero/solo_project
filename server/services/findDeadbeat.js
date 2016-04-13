@@ -25,7 +25,8 @@ var findDeadbeat = function(){
               console.log("The " + data[i].stuff[j].itemName + " is over due: ", returnDueDateConverted );
               // call mailer to send email
               mailer({
-                to: data[i].stuff[j].borrowersEmail, receiverName: data[i].stuff[j].borrowersName,
+                to: data[i].stuff[j].borrowersEmail,
+                receiverName: data[i].stuff[j].borrowersName,
                 itemName: data[i].stuff[j].itemName,
                 loanerName: loanerName
               });

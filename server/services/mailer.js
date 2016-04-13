@@ -23,11 +23,10 @@ var sendReminder = transporter.templateSender({
 
 //this function is exported and called to call sendReminder
 var caller = function(mail){
-  console.log("mailer");
   sendReminder({
       to: mail.to
   }, {
-      borrowersname: mail.borrowersName,
+      borrowersname: mail.receiverName,
       itemname: mail.itemName,
       loanername: mail.loanerName
   }, function(err, info){
