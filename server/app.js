@@ -10,27 +10,26 @@ var auth = require('./routes/auth.js');
 var isLoggedIn = require('./utils/auth.js');
 var private = require('./routes/private/index.js');
 var database = require('./utils/database.js');
-//var mailer = require('./services/mailer.js'); //--- TO DO: call mailer on schedule
-//var schedule = require('node-schedule');
+var schedule = require('node-schedule');
+var deadbeatFinder = require('./services/findDeadbeat.js');
 
-var cron = require('node-schedule');
-// run the job at 18:55:30 on Dec. 14 2018
-//var today = new Date().now();
-//console.log(today);
-// var date = new Date(2016, 03, 12, 14, 38, 30);
-// cron.scheduleJob(date, function(){
-//     console.log(new Date(), "Somthing important is going to happen today!");
-// });
-var rule = new cron.RecurrenceRule();
-rule.second = 30;
-cron.scheduleJob(rule, function(){
-    console.log(new Date(), 'The 30th second of the minute.');
+/* This runs at 8:30AM every day of week. */
+var rule = new schedule.RecurrenceRule();
+rule.dayOfWeek = [0,1,2,3,4,5,6];
+rule.hour = 8;
+rule.minute = 30;
+schedule.scheduleJob(rule, function(){
+    console.log('A deadbeatFinder runs at 8:30AM every day of the week.');
+    deadbeatFinder();
 });
 
-
-// var j = schedule.scheduleJob('42 * * * *', function(){
-//   console.log('The answer to life, the universe, and everything!');
+// var demoRule = new schedule.RecurrenceRule();
+// demoRule.second = 30;
+// schedule.scheduleJob(demoRule, function(){
+//     console.log(new Date(), 'The 30th second of the minute. Calling findDeadbeat');
+//     deadbeatFinder();
 // });
+
 
 // Express App Config
 var app = express();
