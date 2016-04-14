@@ -1,4 +1,4 @@
-var tbsApp = angular.module('tbsApp', ['ngRoute', "xeditable"]);
+var tbsApp = angular.module('tbsApp', ['ngRoute', "xeditable", "ngMaterial"]);
 
 tbsApp.config(['$routeProvider', function ($routeProvider) {
 
@@ -19,7 +19,7 @@ tbsApp.config(['$routeProvider', function ($routeProvider) {
       controllerAs: 'auth',
     })
     .otherwise({
-      redirectTo: 'login',
+      redirectTo: 'add', // work on this later
     });
 },
 ]);

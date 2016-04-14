@@ -19,6 +19,9 @@
   "homepage": "https://github.com/ipero/solo_project#readme",
   "dependencies": {
     "angular": "^1.5.3",
+    "angular-animate": "^1.5.3",
+    "angular-aria": "^1.5.3",
+    "angular-material": "^1.0.7",
     "angular-route": "^1.5.3",
     "angular-xeditable": "^0.1.11",
     "body-parser": "^1.15.0",
