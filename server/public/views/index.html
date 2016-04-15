@@ -5,9 +5,11 @@
     <script src="/public/assets/vendors/moment.min.js"></script>
     <script src="/public/assets/vendors/angular.min.js"></script>
     <script src="/public/assets/vendors/angular-route.min.js"></script>
-    <script src="/public/assets/vendors/angular-animate.min.js"></script>
+
+    <!-- <script src="/public/assets/vendors/angular-animate.min.js"></script>
     <script src="/public/assets/vendors/angular-aria.min.js"></script>
-    <script src="/public/assets/vendors/angular-material.min.js"></script>
+    <script src="/public/assets/vendors/angular-material.min.js"></script> -->
+
     <script src="/public/assets/vendors/xeditable.js"></script>
     <script src="/public/assets/scripts/app.js"></script>
 
@@ -16,30 +18,67 @@
     <script src="/public/assets/scripts/controllers/authController.js"></script>
     <script src="/public/assets/scripts/controllers/addController.js"></script>
     <script src="/public/assets/scripts/controllers/ViewController.js"></script>
-    <link rel="stylesheet" type="text/css" href="/public/assets/vendors/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="/public/assets/vendors/skeleton.css" />
+
+    <script src="/public/assets/vendors/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+    <!-- <link rel="stylesheet" type="text/css" href="/public/assets/vendors/normalize.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="/public/assets/vendors/skeleton.css" /> -->
+    <!-- <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/public/assets/vendors/xeditable.css" />
+    <link rel="stylesheet" type="text/css" href="/public/assets/vendors/angular-material.min.css" />
+    <link rel="stylesheet" type="text/css" href="/public/assets/styles/styles.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+      // Initialize collapse button
+      $(document).ready(function(){
+        $(".button-collapse").sideNav();
+      });
+    </script>
 
   </head>
   <body>
     <!-- Bring in the Angular app -->
-    <main class="container" ng-app="tbsApp">
+    <main class="container" ng-app="tbsApp" >
       <!-- NavController is on every page -->
       <header ng-controller="NavController as nav">
-        <h1>Track my borrowed stuff</h1>
         <nav>
+          <div class="nav-wrapper">
+           <a href="#" class="brand-logo">Bloodhound App</a>
+           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+           <ul class="right hide-on-med-and-down">
+             <li class="two columns"><a href="#home">Home</a></li>
+             <li class="two columns" ng-show="nav.displayLogout"><a href="#add">Add Item</a></li>
+             <li class="two columns" ng-show="nav.displayLogout"><a href="#view">View Items</a></li>
+             <li class="six columns" ng-show="nav.displayLogout">Hi {{nav.username}}! <a href="#" ng-click="nav.logout()">Logout</a></li>
+           </ul>
+           <ul class="side-nav" id="mobile-demo">
+             <li class="two columns"><a href="#home">Home</a></li>
+             <li class="two columns" ng-show="nav.displayLogout"><a href="#add">Add Item</a></li>
+             <li class="two columns" ng-show="nav.displayLogout"><a href="#view">View Items</a></li>
+             <li class="six columns" ng-show="nav.displayLogout">Hi {{nav.username}}! <a href="#" ng-click="nav.logout()">Logout</a></li>
+           </ul>
+          </div>
+        </nav>
+
+
+        <!-- <nav>
           <ul class="row">
             <li class="two columns"><a href="#home">Home</a></li>
             <li class="two columns" ng-show="nav.displayLogout"><a href="#add">Add Item</a></li>
             <li class="two columns" ng-show="nav.displayLogout"><a href="#view">View Items</a></li>
             <li class="six columns" ng-show="nav.displayLogout">Hi {{nav.username}}! | <a href="#" ng-click="nav.logout()">Logout</a></li>
           </ul>
-        </nav>
+        </nav> -->
+        <h1>Track my borrowed stuff</h1>
         <!-- Show a helpful message when needed -->
         <section id="message" class="nav.message.type" ng-show="nav.message.text">
           {{nav.message.text}}
         </section>
       </header>
+      
       <!-- Pull in views via ngRoutes here -->
       <ng-view></ng-view>
     </main>

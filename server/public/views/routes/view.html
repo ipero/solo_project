@@ -1,14 +1,14 @@
 <h2>View all stuff borrowed from you</h2>
 
 <div ng-repeat="item in viewStuff.data.response">
-  <form editable-form name="editableForm" onbeforesave="updateItem(item)">
-      <div>
+  <form class="editable-form" editable-form name="editableForm" onbeforesave="updateItem(item)">
+      <div class="editable-line">
         <!-- editable username -->
         <span class="title">Borrower's name: </span>
         <span editable-text="item.borrowersName" e-name="name" e-required>{{ item.borrowersName }}</span>
       </div>
 
-      <div>
+      <div class="editable-line">
         <!-- editable borrowersName-->
         <span class="title">Borrower's Email: </span>
         <span editable-text="item.borrowersEmail" e-name="email" e-required >
@@ -16,7 +16,7 @@
         </span>
       </div>
 
-      <div>
+      <div class="editable-line">
         <!-- editable itemName-->
         <span class="title">Name: </span>
         <span editable-text="item.itemName" e-name="item" e-required >
@@ -24,15 +24,15 @@
         </span>
       </div>
 
-      <div>
+      <div class="editable-line">
         <!-- editable itemDesc-->
         <span class="title">Notes: </span>
-        <span editable-text="item.itemDesc" e-name="notes" e-required >
+        <span editable-text="item.itemDesc" e-name="notes" >
           {{ item.itemDesc }}
         </span>
       </div>
 
-      <div>
+      <div class="editable-line">
         <!-- editable dateBorrowed -->
         <span class="title">Date borrowed: </span>
         <span type="date" editable-date="item.dateBorrowed" e-name="dateBorrowed" e-required>
@@ -40,12 +40,12 @@
         </span>
       </div>
 
-      <div>
+      <div class="editable-line">
         <!-- editable dateBorrowed -->
-        <span class="title">Return Due Date: </span>
-        <span editable-date="item.returnDueDate" e-name="returnDate" e-required>
-          {{ item.returnDueDate | date: format: "MM-DD-YYYY"}}
-        </span>
+          <span class="title">Return Due Date: </span>
+          <span editable-date="item.returnDueDate" e-name="returnDate" e-required>
+            {{ item.returnDueDate | date: format: "MM-DD-YYYY"}}
+          </span>
       </div>
 
       <div class="buttons">
@@ -62,7 +62,8 @@
             Cancel
           </button>
         </span>
-        <button ng-click="deleteItem(item._id)">Delete</button>
+        <button class="btn btn-danger red" ng-click="deleteItem(item._id)">Delete</button>
       </div>
-    </form>
+
+  </form>
 </div>
