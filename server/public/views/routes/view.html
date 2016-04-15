@@ -1,17 +1,20 @@
-<h2>View all stuff borrowed from you</h2>
+<div class="row">
+  <h2 data-fittext data-fittext-max="45">View all stuff borrowed from you</h2>
+</div>
 
 <div ng-repeat="item in viewStuff.data.response">
-  <form class="editable-form" editable-form name="editableForm" onbeforesave="updateItem(item)">
+
+  <form class="editable-form stuff" editable-form name="editableForm" onbeforesave="updateItem(item)">
       <div class="editable-line">
         <!-- editable username -->
-        <span class="title">Borrower's name: </span>
-        <span editable-text="item.borrowersName" e-name="name" e-required>{{ item.borrowersName }}</span>
+        <span class="title col s12">Borrower's name: </span>
+        <span class="col s12" editable-text="item.borrowersName" e-name="name" e-required>{{ item.borrowersName }}</span>
       </div>
 
       <div class="editable-line">
         <!-- editable borrowersName-->
-        <span class="title">Borrower's Email: </span>
-        <span editable-text="item.borrowersEmail" e-name="email" e-required >
+        <span class="title col s12">Borrower's Email: </span>
+        <span class="col s12" editable-text="item.borrowersEmail" e-name="email" e-required >
           {{ item.borrowersEmail }}
         </span>
       </div>
@@ -50,19 +53,19 @@
 
       <div class="buttons">
         <!-- button to show form -->
-        <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+        <button type="button" class="waves-effect waves-light btn" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
           Edit
         </button>
         <!-- buttons to submit / cancel form -->
         <span ng-show="editableForm.$visible">
-          <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+          <button type="submit" class="waves-effect waves-light btn" ng-disabled="editableForm.$waiting">
             Save
           </button>
-          <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          <button type="button" class="waves-effect waves-light btn" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
             Cancel
           </button>
         </span>
-        <button class="btn btn-danger red" ng-click="deleteItem(item._id)">Delete</button>
+        <button class="btn waves-effect waves-light red" ng-click="deleteItem(item._id)">Delete</button>
       </div>
 
   </form>

@@ -4,7 +4,7 @@ var router = express.Router();
 var User = require("../../models/user.js");
 
 router.get('/', function (req, res) {
-  res.send({ message: 'Add borrowed item here!' });
+  res.send({ message: 'What was borrowed?' });
 });
 
 router.post('/', function(req, res){

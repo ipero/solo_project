@@ -1,8 +1,12 @@
-/*span {
-  font-size: 20px;
-}*/
-md-input-container {
-  top: 0px;
+.stuff{
+  background-color: #EBEBEB;
+
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 5px;
+}
+span{
+  font-size: 17px;
 }
 
 .editable-line{
@@ -14,9 +18,13 @@ md-input-container {
   margin-bottom: 10px;
 }
 
-input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url],
-input[type=time], input[type=date], input[type=datetime], input[type=datetime-local],
-input[type=tel], input[type=number], input[type=search],
-textarea.materialize-textarea{
-  height: 2em !important;
+.editable-form input:not([type]),.editable-form  input[type=text],.editable-form  input[type=password],
+.editable-form  input[type=email],.editable-form  input[type=url],
+.editable-form input[type=time],.editable-form  input[type=date],
+.editable-form  input[type=datetime],.editable-form  input[type=datetime-local],
+.editable-form input[type=tel],.editable-form input[type=number],
+.editable-form input[type=search], textarea.materialize-textarea{
+  height: 2em ;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
 }

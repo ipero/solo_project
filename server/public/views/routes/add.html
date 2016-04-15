@@ -1,17 +1,56 @@
-<h2>Add Item</h2>
 <section>
-  <p>
-    {{addStuff.data}}
-  </p>
+  <div class="row">
+    <h2 data-fittext data-fittext-max="45">
+      {{addStuff.data}}
+    </h2>
+  </div>
+
+
 </section>
 
-<form ng-submit="addItem(item)">
-  <input ng-model="item.borrowersName" type="text" placeholder="Who borrowed your belonging?" />
-  <input ng-model="item.borrowersEmail" type="text" placeholder="Borrower's email" />
-  <input ng-model="item.itemName" type="text" placeholder="What was borrowed?" />
-  <input ng-model="item.itemDesc" type="text" placeholder="Any notes?" />
-  <input ng-model="item.dateBorrowed" type="date" placeholder="When it was borrowed?" />
-  <input ng-model="item.returnDueDate" type="date" placeholder="When this should be returned?" />
+<div class="row">
+  <form ng-submit="addItem(item)" class="col s12">
+    <div class="row">
+      <div class="input-field col s12 m6">
+        <i class="material-icons prefix">person</i>
+        <input ng-model="item.borrowersName" id="who_borrowed" type="text"  required/>
+        <label for="who_borrowed">Who borrowed from you?</label>
+      </div>
 
-  <input type="submit" value="Save Item" />
-</form>
+      <div class="input-field col s12 m6">
+        <i class="material-icons prefix">email</i>
+        <input ng-model="item.borrowersEmail" id="borrowers_email" type="email" class="validate" required/>
+        <label for="borrowers_email">Borrower's email</label>
+      </div>
+
+      <div class="input-field col s12 m6">
+        <i class="material-icons prefix">note_add</i>
+        <input ng-model="item.itemName" id="item_name" type="text" required/>
+        <label for="item_name">What was borrowed?</label>
+      </div>
+
+      <div class="input-field col s12 m6">
+        <i class="material-icons prefix">description</i>
+        <input ng-model="item.itemDesc" id="item_desc" type="text"/>
+        <label for="item_desc">Any notes?</label>
+      </div>
+
+      <div class="input-field col s12 m6">
+        <i class="material-icons">today</i>
+        <span class="title">When it was borrowed? </span>
+        <input id="dateBorrowed" ng-model="item.dateBorrowed" type="date"  required/>
+      </div>
+
+      <div class="input-field col s12 m6">
+        <i class="material-icons">schedule</i>
+        <span class="title">When this should be returned? </span>
+        <input id="returnDate" ng-model="item.returnDueDate" type="date" required/>
+      </div>
+
+      <div>
+        <input class="btn" type="submit" value="Save Item" />
+      </div>
+
+    </div>
+  </form>
+</div>
