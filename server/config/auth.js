@@ -5,7 +5,7 @@
     googleAuth: {
       clientId: '231236268580-kr4p4cuj9jbfpiu60iqv0u4e7c4r1pth.apps.googleusercontent.com',
       clientSecret: 'FOWMaHUYMP7rR3tj7uhAVWIu',
-      callbackUrl: 'http://localhost:5000/auth/google/callback',
+      callbackUrl: 'https://calm-meadow-46706.herokuapp.com/auth/google/callback',
     },
 
     sessionVars: {
