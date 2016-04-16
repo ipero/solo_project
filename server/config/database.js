@@ -3,4 +3,10 @@
  * application's persistent data.
 
  */
-module.exports = 'mongodb://localhost/tbs';
+ var uristring =
+   process.env.MONGOLAB_URI ||
+   process.env.MONGOHQ_URL ||
+   'mongodb://localhost/tbs';
+//var mongoDB = mongoose.connect(uristring).connection;
+
+module.exports = uristring;

@@ -10,7 +10,7 @@ span{
 }
 
 .editable-line{
-  max-height: 40px;
+  max-height: 60px;
   margin-bottom: 10px;
 }
 
@@ -27,4 +27,7 @@ span{
   height: 2em ;
   font-size: 1.2rem;
   margin-bottom: 10px;
+}
+.btn{
+  margin: 0 10px 10px 0;
 }
