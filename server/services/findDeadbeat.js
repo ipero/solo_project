@@ -19,7 +19,7 @@ var findDeadbeat = function(){
 
             //check if something is over due by one day.
             //getTime converts date to milliseconds (one day is 86,400,400 milliseconds)
-            if( (returnDueDateConverted.getTime()+86400000) < todayDate.getTime() ){
+            if( (returnDueDateConverted.getTime()+87000000) < todayDate.getTime() ){
               console.log('We are going to send reminder to ', data[i].stuff[j].borrowersName )
               numItemsNotReturned++;
               console.log("The " + data[i].stuff[j].itemName + " is over due: ", returnDueDateConverted );

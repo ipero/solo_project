@@ -8,10 +8,8 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function(req, res){
-  console.log(req.body);
-  //var addStuff = new User({"stuff": [{"borrowersName":req.body.borrowersName, "email": req.body.email}] });
-
-  User.user.findOne({googleEmail:req.body.email}, function(err, user){
+  
+  User.user.findOne({_id:req.session.passport.user}, function(err, user){
     if(err){
         console.log(err);
       }else {
@@ -25,10 +23,12 @@ router.post('/', function(req, res){
             returnDueDate: req.body.returnDueDate
           },
           function(err, createdItem){
+
             user.stuff.push(createdItem);
+            console.log("Was able to push");
             user.save(function(err){
             if(err){
-              console.log(err);
+              console.log("Error ons save:", err);
             } else {
               res.status(200).send();
             }

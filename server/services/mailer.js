@@ -16,9 +16,12 @@ var transporter = nodemailer.createTransport( {
 var sendReminder = transporter.templateSender({
     subject: 'You forgot to return {{itemname}}!',
     text: 'Hello {{borrowersname}}, please return: {{ itemname }}',
-    html: '<b>Hello <strong>{{borrowersname}}</strong>, please return\n<b>{{ itemname }}</b> to {{loanername}}.</p>'
+    html: "<p>Hello {{borrowersname}}, this is just a friendly"
+     +" reminder from Bloodhound App. A while ago you borrowed {{ itemname }} from "
+     +"{{loanername}}.</p>"
+     +"<p>Please return\n<b>{{ itemname }}</b> to {{loanername}} in next 2 weeks.</p>"
 }, {
-    from: '"Raccoonzee App" <' + SENDER.email + '>',
+    from: '"Bloodhound App" <' + SENDER.email + '>',
 });
 
 //this function is exported and called to call sendReminder
