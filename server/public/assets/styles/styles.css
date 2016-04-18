@@ -80,3 +80,18 @@ main:after {
   content: "";
   display: block;
 }
+
+/* --- */
+.btn-small{
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+}
+.wrapper{
+  padding: 20px;
+}
+
+footer p{
+  color: #fff;
+  padding-bottom: 20px;
+}

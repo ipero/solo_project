@@ -3,3 +3,5 @@ node_modules/
 npm-debut.log
 server/config/auth.js
 server/config/gmailpassport.js
+server/auth/auth.js
+server/auth/gmailpassport.js

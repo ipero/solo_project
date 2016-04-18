@@ -13,7 +13,7 @@ var database = require('./utils/database.js');
 var schedule = require('node-schedule');
 var deadbeatFinder = require('./services/findDeadbeat.js');
 
-/* This runs at 8:30AM every day of week. */
+// This runs at 8:30AM every day of week.
 var rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0,1,2,3,4,5,6];
 rule.hour = 8;
@@ -26,7 +26,7 @@ schedule.scheduleJob(rule, function(){
 // var demoRule = new schedule.RecurrenceRule();
 // demoRule.second = 45;
 // schedule.scheduleJob(demoRule, function(){
-//     console.log(new Date(), 'The 30th second of the minute. Calling findDeadbeat');
+//     console.log(new Date(), 'The 45th second of the minute. Calling findDeadbeat');
 //     deadbeatFinder();
 // });
 
@@ -66,3 +66,5 @@ app.use('/', index);
 app.listen(app.get("port"), function () {
   console.log('Listening on port: ', app.get("port"));
 });
+
+//deadbeatFinder();

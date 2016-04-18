@@ -1,72 +1,85 @@
-<div class="row">
-  <h3 data-fittext data-fittext-max="45">View all stuff borrowed from you</h3>
-</div>
+<div class="wrapper">
 
-<div ng-repeat="item in viewStuff.data.response">
+  <div class="row">
+    <h2 class="blue-grey-text text-darken-1" data-fittext data-fittext-max="45">View all stuff borrowed from you</h2>
+  </div>
+  <div class="sorting">
+      <span class="col s12">Sort by: </span>
 
-  <form class="editable-form stuff" editable-form name="editableForm" onbeforesave="updateItem(item)">
-      <div class="editable-line">
-        <!-- editable username -->
-        <span class="title col s12">Borrower's name: </span>
-        <span class="col s12" editable-text="item.borrowersName" e-name="name" e-required>{{ item.borrowersName }}</span>
-      </div>
+      <button class="btn-small blue" ng-click="order('borrowersName')">Borrower</button>
+      <button class="btn-small blue" ng-click="order('itemName')">Item</button>
+      <button class="btn-small blue" ng-click="order('returnDueDate')">Due Date</button>
 
-      <div class="editable-line">
-        <!-- editable borrowersName-->
-        <span class="title col s12">Borrower's Email: </span>
-        <span class="col s12" editable-text="item.borrowersEmail" e-name="email" e-required >
-          {{ item.borrowersEmail }}
-        </span>
-      </div>
 
-      <div class="editable-line">
-        <!-- editable itemName-->
-        <span class="title col s12">Name: </span>
-        <span class="col s12" editable-text="item.itemName" e-name="item" e-required >
-          {{ item.itemName }}
-        </span>
-      </div>
+  </div>
 
-      <div class="editable-line">
-        <!-- editable itemDesc-->
-        <span class="title col s12">Notes: </span>
-        <span class="col s12" editable-text="item.itemDesc" e-name="notes" >
-          {{ item.itemDesc }}
-        </span>
-      </div>
+  <div ng-repeat="item in viewStuff.data.response | orderBy:predicate:reverse ">
 
-      <div class="editable-line">
-        <!-- editable dateBorrowed -->
-        <span class="title">Date borrowed: </span>
-        <span type="date" editable-date="item.dateBorrowed" e-name="dateBorrowed" e-required>
-          {{ item.dateBorrowed | date: format: "MM-DD-YYYY"}}
-        </span>
-      </div>
+    <form class="editable-form stuff" editable-form name="editableForm" onbeforesave="updateItem(item)">
+        <div class="editable-line">
+          <!-- editable username -->
+          <span class="title col s12">Borrower's name: </span>
+          <span class="col s12" editable-text="item.borrowersName" e-name="name" e-required>{{ item.borrowersName }}</span>
+        </div>
 
-      <div class="editable-line">
-        <!-- editable dateBorrowed -->
-          <span class="title">Return Due Date: </span>
-          <span editable-date="item.returnDueDate" e-name="returnDate" e-required>
-            {{ item.returnDueDate | date: format: "MM-DD-YYYY"}}
+        <div class="editable-line">
+          <!-- editable borrowersName-->
+          <span class="title col s12">Borrower's Email: </span>
+          <span class="col s12" editable-text="item.borrowersEmail" e-name="email" e-required >
+            {{ item.borrowersEmail }}
           </span>
-      </div>
+        </div>
 
-      <div class="buttons">
-        <!-- button to show form -->
-        <button type="button" class="waves-effect waves-light btn" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
-          Edit
-        </button>
-        <!-- buttons to submit / cancel form -->
-        <span ng-show="editableForm.$visible">
-          <button type="submit" class="waves-effect waves-light btn" ng-disabled="editableForm.$waiting">
-            Save
-          </button>
-          <button type="button" class="waves-effect waves-light btn" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-            Cancel
-          </button>
-        </span>
-        <button class="btn waves-effect waves-light red" ng-click="deleteItem(item._id)">Delete</button>
-      </div>
+        <div class="editable-line">
+          <!-- editable itemName-->
+          <span class="title col s12">Name: </span>
+          <span class="col s12" editable-text="item.itemName" e-name="item" e-required >
+            {{ item.itemName }}
+          </span>
+        </div>
 
-  </form>
+        <div class="editable-line">
+          <!-- editable itemDesc-->
+          <span class="title col s12">Notes: </span>
+          <span class="col s12" editable-text="item.itemDesc" e-name="notes" >
+            {{ item.itemDesc }}
+          </span>
+        </div>
+
+        <div class="editable-line">
+          <!-- editable dateBorrowed -->
+          <span class="title">Date borrowed: </span>
+          <span type="date" editable-date="item.dateBorrowed" e-name="dateBorrowed" e-required>
+            {{ item.dateBorrowed | date: format: "MM-DD-YYYY"}}
+          </span>
+        </div>
+
+        <div class="editable-line">
+          <!-- editable dateBorrowed -->
+            <span class="title">Return Due Date: </span>
+            <span editable-date="item.returnDueDate" e-name="returnDate" e-required>
+              {{ item.returnDueDate | date: format: "MM-DD-YYYY"}}
+            </span>
+        </div>
+
+        <div class="buttons">
+          <!-- button to show form -->
+          <button type="button" class="waves-effect waves-light btn" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+            Edit
+          </button>
+          <!-- buttons to submit / cancel form -->
+          <span ng-show="editableForm.$visible">
+            <button type="submit" class="waves-effect waves-light btn" ng-disabled="editableForm.$waiting">
+              Save
+            </button>
+            <button type="button" class="waves-effect waves-light btn" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+              Cancel
+            </button>
+          </span>
+          <button class="btn waves-effect waves-light red" ng-click="deleteItem(item._id)">Delete</button>
+        </div>
+
+    </form>
+  </div>
+
 </div>
