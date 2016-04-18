@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Raccoonzee - Mobile App to Keep Track of Borrowed Stuff</title>
+    <title>Bloodhound App - Mobile App to Keep Track of Borrowed Stuff</title>
     <!-- <script src="/public/assets/vendors/moment.min.js"></script> -->
     <script src="/public/assets/vendors/angular.min.js"></script>
     <script src="/public/assets/vendors/angular-route.min.js"></script>
@@ -26,23 +26,17 @@
 
     <script src="/public/assets/vendors/ng-FitText.min.js"></script>
 
-    <!-- <link rel="stylesheet" type="text/css" href="/public/assets/vendors/normalize.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="/public/assets/vendors/skeleton.css" /> -->
-    <!-- <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/public/assets/vendors/xeditable.css" />
     <link rel="stylesheet" type="text/css" href="/public/assets/vendors/angular-material.min.css" />
     <link rel="stylesheet" type="text/css" href="/public/assets/styles/styles.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/public/favicon.png">
 
     <script>
       // Initialize collapse button
       $(document).ready(function(){
         $(".button-collapse").sideNav();
-        $('.datepicker').pickadate({
-          selectMonths: true, // Creates a dropdown to control month
-          selectYears: 15, // Creates a dropdown of 15 years to control year
-          format: 'dd-mm-yyyy' });
       });
     </script>
 
@@ -57,7 +51,7 @@
         <div class="row">
           <nav>
             <div class="nav-wrapper">
-             <a href="#" class="brand-logo">Bloodhound App</a>
+             <a href="#" class="brand-logo"><img src="/public/assets/images/logo.jpg" height="55px" /></a>
              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
              <ul class="right hide-on-med-and-down">
                <li class="two columns"><a href="#home">Home</a></li>
@@ -66,7 +60,7 @@
 
                <li class="six columns" ng-show="nav.displayLogout">Hi {{nav.username}}! <a href="#" ng-click="nav.logout()"> Logout </a></li>
                <li class="six columns" ng-show="!nav.displayLogout"><a href="/auth/google" > Login </a></li>
-               <!-- <li class="six columns" ng-show="nav.displayLogout">Hi {{nav.username}}! <a href="#" ng-click="nav.logout()">Logout</a></li> -->
+
              </ul>
              <ul class="side-nav" id="mobile-demo">
                <li class="two columns"><a href="#home">Home</a></li>
@@ -80,16 +74,6 @@
           </nav>
         </div>
 
-
-        <!-- <nav>
-          <ul class="row">
-            <li class="two columns"><a href="#home">Home</a></li>
-            <li class="two columns" ng-show="nav.displayLogout"><a href="#add">Add Item</a></li>
-            <li class="two columns" ng-show="nav.displayLogout"><a href="#view">View Items</a></li>
-            <li class="six columns" ng-show="nav.displayLogout">Hi {{nav.username}}! | <a href="#" ng-click="nav.logout()">Logout</a></li>
-          </ul>
-        </nav> -->
-
         <!-- Show a helpful message when needed -->
         <section id="message" class="nav.message.type" ng-show="nav.message.text">
           {{nav.message.text}}
@@ -98,6 +82,15 @@
 
       <!-- Pull in views via ngRoutes here -->
       <ng-view></ng-view>
+
+
     </main>
+    <footer class="container page-footer">
+          <div class="footer-copyright">
+            <div class="container">
+            © 2016 Copyright Roman Hiebert
+            </div>
+
+    </footer>
   </body>
 </html>

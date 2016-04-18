@@ -1,10 +1,11 @@
-<!-- Consider this the main view -->
-<h2>You are not logged in!</h2>
-<h3>Please log in and try again</h3>
+<div class="container">
+
+<h2 class="red-text">You are not logged in!</h2>
+<h4 class="blue-grey-text text-darken-1">Please log in and try again</h4>
 <!-- Shown for users that are NOT logged in -->
 <section ng-hide="auth.loggedIn">
   <!-- I got this button image from Googles sign-in button brand guidelines page -->
-  <a href= "/auth/google"><img src="/public/assets/btn_google_signin_dark_normal_web.png" /></a>
+  <a href= "/auth/google"><img src="/public/assets/images/btn_google_signin_dark_normal_web.png" /></a>
 </section>
 <!-- Shown for users that are logged in -->
 <section ng-show="auth.loggedIn">
@@ -12,3 +13,4 @@
     You are logged in now!
   </p>
 </section>
+</div>
