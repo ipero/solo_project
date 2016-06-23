@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function(req, res){
-  
+
   User.user.findOne({_id:req.session.passport.user}, function(err, user){
     if(err){
         console.log(err);

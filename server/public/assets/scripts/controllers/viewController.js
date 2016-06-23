@@ -9,6 +9,7 @@ tbsApp.controller('ViewController', ["$http", "$location", "$rootScope", "ViewSt
 
   ViewStuff.viewStuff($rootScope.userEmail);
   $this.data = ViewStuff.data;
+  //sort
   $scope.predicate = 'borrowersName';
   $scope.reverse = true;
   $scope.order = function(predicate) {
