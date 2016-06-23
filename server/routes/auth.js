@@ -27,6 +27,7 @@ router.get('/google', passport.authenticate('google',
     prompt: 'select_account',
   })
 );
+
 /**
  * GET /auth/google/callback
  *
@@ -36,8 +37,6 @@ router.get('/google', passport.authenticate('google',
  * IMPORTANT: URL--the first parameter below--must match
  * callbackUrl in {@link config/auth}.
  */
-
-
  router.get('/google/callback', passport.authenticate('google',
    {
      successRedirect: '/private', // take them to their private data
