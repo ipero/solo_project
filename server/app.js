@@ -9,7 +9,7 @@ var index = require('./routes/index.js');
 var auth = require('./routes/auth.js');
 var isLoggedIn = require('./utils/auth.js');
 var private = require('./routes/private/index.js');
-//var database = require('./utils/database.js');
+var database = require('./utils/database.js');
 var schedule = require('node-schedule');
 var deadbeatFinder = require('./services/findDeadbeat.js');
 
@@ -38,10 +38,10 @@ app.use('/public', express.static(__dirname + '/public'));  // serve files from 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.set("port", process.env.PORT || 5000);
+app.set("port", (process.env.PORT || 5000));
 
 // Database Connection Handling
-//database();
+database();
 
 // Session Creation and Storage
 app.use(session({
