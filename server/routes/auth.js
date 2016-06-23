@@ -48,7 +48,7 @@ router.get('/google/callback',
       return res.redirect('/users/' + user.username);
     });
     })(req, res, next);
-);
+});
 /**
  * GET /auth
  *
