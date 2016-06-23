@@ -48,10 +48,6 @@ router.get('/google/callback',
       return res.redirect('/users/' + user.username);
     });
     })(req, res, next);
-  // {
-  //   successRedirect: '/private', // take them to their private data
-  //   failureRedirect: '/', // take them back home to try again
-  // })
 );
 /**
  * GET /auth
