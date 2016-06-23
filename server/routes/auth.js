@@ -36,11 +36,22 @@ router.get('/google', passport.authenticate('google',
  * IMPORTANT: URL--the first parameter below--must match
  * callbackUrl in {@link config/auth}.
  */
-router.get('/google/callback', passport.authenticate('google',
-  {
-    successRedirect: '/private', // take them to their private data
-    failureRedirect: '/', // take them back home to try again
-  })
+
+
+router.get('/google/callback',
+    function(req, res, next) {
+    passport.authenticate('google', function(err, user, info) {
+    if (err) { console.log(err); }
+    if (!user) { return res.redirect('/login'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/users/' + user.username);
+    });
+    })(req, res, next);
+  // {
+  //   successRedirect: '/private', // take them to their private data
+  //   failureRedirect: '/', // take them back home to try again
+  // })
 );
 /**
  * GET /auth
