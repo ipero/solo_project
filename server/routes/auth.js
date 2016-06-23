@@ -38,17 +38,12 @@ router.get('/google', passport.authenticate('google',
  */
 
 
-router.get('/google/callback',
-    function(req, res, next) {
-    passport.authenticate('google', function(err, user, info) {
-    if (err) { console.log(err); }
-    if (!user) { return res.redirect('/login'); }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      return res.redirect('/users/' + user.username);
-    });
-    })(req, res, next);
-});
+ router.get('/google/callback', passport.authenticate('google',
+   {
+     successRedirect: '/private', // take them to their private data
+     failureRedirect: '/', // take them back home to try again
+   })
+ );
 /**
  * GET /auth
  *
