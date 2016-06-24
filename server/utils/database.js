@@ -3,7 +3,7 @@ var databaseUri = require('../config/database.js');
 var mongoose = require('mongoose');
 
 module.exports = function () {
-
+  console.log(databaseUri);
   mongoose.connect(databaseUri);
 
   // When successfully connected
