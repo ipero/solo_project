@@ -4,7 +4,7 @@
 
  */
  var uristring =
-   process.env.MONGOLAB_URI || 'mongodb://localhost/tbs';
+   process.env.MONGOLAB_URI;
 //var mongoDB = mongoose.connect(uristring).connection;
 
 module.exports = uristring;
