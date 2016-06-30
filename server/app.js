@@ -16,7 +16,7 @@ var deadbeatFinder = require('./services/findDeadbeat.js');
 // This runs at 8:30AM every day of week.
 var rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0,1,2,3,4,5,6];
-rule.hour = 8;
+rule.hour = 12;
 rule.minute = 30;
 schedule.scheduleJob(rule, function(){
     console.log('A deadbeatFinder runs at 8:30AM every day of the week.');
