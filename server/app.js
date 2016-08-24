@@ -19,7 +19,7 @@ rule.dayOfWeek = [0,1,2,3,4,5,6];
 rule.hour = 12;
 rule.minute = 30;
 schedule.scheduleJob(rule, function(){
-    console.log('A deadbeatFinder runs at 8:30AM every day of the week.');
+    console.log('A deadbeatFinder runs at 12:30pm every day of the week.');//depends on server location
     deadbeatFinder();
 });
 
